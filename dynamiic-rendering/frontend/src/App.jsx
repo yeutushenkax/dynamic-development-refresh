@@ -1,4 +1,5 @@
 import { useState } from "react"
+import properties from './data/properties.json'
 
 const App = () => {
   const [newitem, setNewItem] = useState('')
@@ -19,19 +20,19 @@ const App = () => {
   return  <div>
     <form onSubmit={handleSubmit}>
       <input value={newitem} onChange={handleChange}/>
-      <button type="submit">submit</button>
+      <button type="submit">{properties.submitButtonText}</button>
     </form>
     {!items.length 
-      ? <div>empty</div> 
+      ? <div>{properties.textWhenNoItems}</div> 
       : <ul>
         {items.map((item, i) => <li key={i}>
           {item}
-          <button onClick={() => setItems(items.filter((_item, index) => index !== i))}>delete</button>
+          <button onClick={() => setItems(items.filter((_item, index) => index !== i))}>{properties.deleteButtonText}</button>
         </li>)}
       </ul>
     }
     <p>
-      counter: {counter}
+      {properties.counterText}: {counter}
       <button onClick={() => setCounter(counter + 1)}>+1</button>
     </p>
   </div>
